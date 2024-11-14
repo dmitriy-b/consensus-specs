@@ -13,12 +13,12 @@ on:
   #     - gnosis
   pull_request:
   workflow_dispatch:
-    inputs:
-      test_preset_type:
-        default: gnosis
-        description: Type of test to run, either mainnet or minimal
-        type: string
-        required: true
+    # inputs:
+    #   test_preset_type:
+    #     default: gnosis
+    #     description: Type of test to run, either mainnet or minimal
+    #     type: string
+    #     required: true
   # schedule:
   #   - cron: '0 5 * * *'
 

@@ -7,11 +7,11 @@ defaults:
 on:
   workflow_dispatch:
     inputs:
-      ref:
-        description: The branch, tag or SHA to checkout and build from
-        default: gnosis
-        type: string
-        required: true
+      # ref:
+      #   description: The branch, tag or SHA to checkout and build from
+      #   default: gnosis
+      #   type: string
+      #   required: true
   # schedule:
   #   - cron:  '0 2 * * *'
 
