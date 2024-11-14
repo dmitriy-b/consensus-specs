@@ -1,4 +1,4 @@
-name: Run spec tests and linter
+name: Run spec tests on Gnosis
 
 defaults:
   run:

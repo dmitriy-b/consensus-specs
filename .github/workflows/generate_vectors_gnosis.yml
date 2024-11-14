@@ -1,4 +1,4 @@
-name: Run test vector generation
+name: Run test vector generation on Gnosis
 
 defaults:
   run:
@@ -6,7 +6,7 @@ defaults:
 
 on:
   workflow_dispatch:
-    inputs:
+    # inputs:
       # ref:
       #   description: The branch, tag or SHA to checkout and build from
       #   default: gnosis
