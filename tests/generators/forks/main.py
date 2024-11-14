@@ -2,7 +2,7 @@ from typing import Iterable
 
 from eth2spec.test.helpers.constants import (
     PHASE0, ALTAIR, BELLATRIX, CAPELLA, DENEB, ELECTRA,
-    MINIMAL, MAINNET,
+    MINIMAL, MAINNET, GNOSIS
 )
 from eth2spec.test.helpers.typing import SpecForkName, PresetBaseName
 from eth2spec.test.altair.fork import test_altair_fork_basic, test_altair_fork_random
@@ -34,7 +34,7 @@ def create_provider(tests_src, preset_name: PresetBaseName,
 
 
 def _get_fork_tests_providers():
-    for preset in [MINIMAL, MAINNET]:
+    for preset in [MINIMAL, MAINNET, GNOSIS]:
         yield create_provider(test_altair_fork_basic, preset, PHASE0, ALTAIR)
         yield create_provider(test_altair_fork_random, preset, PHASE0, ALTAIR)
         yield create_provider(test_bellatrix_fork_basic, preset, ALTAIR, BELLATRIX)

@@ -5,7 +5,7 @@ from inspect import getmembers, isclass
 from eth2spec.gen_helpers.gen_base import gen_runner, gen_typing
 
 from eth2spec.debug import random_value, encode
-from eth2spec.test.helpers.constants import TESTGEN_FORKS, MINIMAL, MAINNET
+from eth2spec.test.helpers.constants import TESTGEN_FORKS, MINIMAL, MAINNET, GNOSIS
 from eth2spec.test.context import spec_targets
 from eth2spec.utils.ssz.ssz_typing import Container
 from eth2spec.utils.ssz.ssz_impl import (
@@ -80,6 +80,8 @@ if __name__ == "__main__":
     settings.append((seed, MINIMAL, random_value.RandomizationMode.mode_random, True, 30))
     seed += 1
     settings.append((seed, MAINNET, random_value.RandomizationMode.mode_random, False, 5))
+    seed += 1
+    settings.append((seed, GNOSIS, random_value.RandomizationMode.mode_random, False, 30))
     seed += 1
     for fork in TESTGEN_FORKS:
         gen_runner.run_generator("ssz_static", [

@@ -3,6 +3,7 @@ from typing import Iterable
 from eth2spec.test.helpers.constants import (
     MINIMAL,
     MAINNET,
+    GNOSIS,
     ALL_PRE_POST_FORKS,
 )
 from eth2spec.gen_helpers.gen_base import gen_runner, gen_typing
@@ -59,4 +60,5 @@ if __name__ == "__main__":
             gen_runner.run_generator("transition", [
                 create_provider(transition_test_module, MINIMAL, pre_fork, post_fork),
                 create_provider(transition_test_module, MAINNET, pre_fork, post_fork),
+                create_provider(transition_test_module, GNOSIS, pre_fork, post_fork),
             ])
