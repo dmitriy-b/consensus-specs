@@ -6,6 +6,9 @@ venv
 /.pytest_cache
 *.swp
 
+.DS_Store
+.history/*
+
 build/
 output/
 dist/

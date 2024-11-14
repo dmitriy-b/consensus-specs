@@ -9,7 +9,7 @@ TEST_REPORT_DIR = $(PY_SPEC_DIR)/test-reports
 TEST_VECTOR_DIR = ../consensus-spec-tests/tests
 GENERATOR_DIR = ./tests/generators
 CONFIGS_DIR = ./configs
-TEST_PRESET_TYPE ?= minimal
+TEST_PRESET_TYPE ?= gnosis
 # Collect a list of generator names
 GENERATORS = $(sort $(dir $(wildcard $(GENERATOR_DIR)/*/.)))
 # Map this list of generator paths to "gen_{generator name}" entries
@@ -196,6 +196,7 @@ gen_kzg_setups:
 	. venv/bin/activate; \
 	pip3 install -r requirements.txt; \
 	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/minimal/trusted_setups; \
+	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/gnosis/trusted_setups; \
 	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/mainnet/trusted_setups
 
 # For any generator, build it using the run_generator function.
