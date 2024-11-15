@@ -1,17 +1,17 @@
 name: Run test vector generation on Gnosis
 
-defaults:
-  run:
-    shell: zsh {0}
+# defaults:
+#   run:
+#     shell: zsh {0}
 
 on:
   workflow_dispatch:
-    # inputs:
-      # ref:
-      #   description: The branch, tag or SHA to checkout and build from
-      #   default: gnosis
-      #   type: string
-      #   required: true
+    inputs:
+      ref:
+        description: The branch, tag or SHA to checkout and build from
+        default: gnosis
+        type: string
+        required: true
   # schedule:
   #   - cron:  '0 2 * * *'
 
