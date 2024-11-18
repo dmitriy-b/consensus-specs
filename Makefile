@@ -179,7 +179,7 @@ define run_generator
 	. venv/bin/activate; \
 	pip3 install ../../../dist/eth2spec-*.whl; \
 	pip3 install 'eth2spec[generator]'; \
-	python3 main.py -o $(CURRENT_DIR)/$(TEST_VECTOR_DIR) $(if $(filter true,$(modcheck)),--modcheck); \
+	python3 main.py -o $(CURRENT_DIR)/$(TEST_VECTOR_DIR) $(if $(filter true,$(modcheck)),--modcheck) -l gnosis; \
 	echo "generator $(1) finished"
 endef
 

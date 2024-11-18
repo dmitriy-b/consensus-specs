@@ -30,6 +30,7 @@ jobs:
         with:
           repository: 'dmitriy-b/consensus-spec-tests'
           path: 'consensus-spec-tests'
+          branch: 'gnosis'
           fetch-depth: 1
       - name: Setup Python
         uses: actions/setup-python@v5
