@@ -29,7 +29,7 @@ def fixture(*args, **kwargs):
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--preset", action="store", type=str, default="minimal",
+        "--preset", action="store", type=str, default="gnosis",
         help="preset: make the pyspec use the specified preset"
     )
     parser.addoption(

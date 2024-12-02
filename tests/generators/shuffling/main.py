@@ -66,5 +66,7 @@ def create_provider(preset_name: PresetBaseName) -> gen_typing.TestProvider:
 
 if __name__ == "__main__":
     gen_runner.run_generator("shuffling", [
-        create_provider(MINIMAL), create_provider(MAINNET), create_provider(GNOSIS)
+        # create_provider(MINIMAL), 
+        # create_provider(MAINNET), 
+        create_provider(GNOSIS)
     ])

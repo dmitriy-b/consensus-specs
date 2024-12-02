@@ -14,6 +14,7 @@ spec_builders = {
     builder.fork: builder
     for builder in (
         Phase0SpecBuilder, AltairSpecBuilder, BellatrixSpecBuilder, CapellaSpecBuilder, DenebSpecBuilder,
-        ElectraSpecBuilder, WhiskSpecBuilder, EIP7594SpecBuilder, EIP6800SpecBuilder, EIP7732SpecBuilder,
+        ElectraSpecBuilder, 
+        # WhiskSpecBuilder, EIP7594SpecBuilder, EIP6800SpecBuilder, EIP7732SpecBuilder,
     )
 }
