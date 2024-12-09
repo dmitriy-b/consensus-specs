@@ -464,8 +464,8 @@ class PySpecCommand(Command):
         if not self.dry_run:
             with open(os.path.join(self.out_dir, '__init__.py'), 'w') as out:
                 # `mainnet` is the default spec.
-                out.write("from . import mainnet as spec  # noqa:F401\n")
-
+                # out.write("from . import mainnet as spec  # noqa:F401\n")
+                out.write("from . import gnosis as spec  # noqa:F401\n")
 
 class BuildPyCommand(build_py):
     """Customize the build command to run the spec-builder on setup.py build"""
