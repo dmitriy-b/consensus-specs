@@ -22,7 +22,7 @@ for fork in ALL_EXECUTABLE_SPEC_NAMES:
 
 # this is the only output of this file
 spec_targets: Dict[PresetBaseName, Dict[SpecForkName, Spec]] = {
-    #MINIMAL: {fork: eval(f"spec_{fork}_minimal") for fork in ALL_EXECUTABLE_SPEC_NAMES},
-    #MAINNET: {fork: eval(f"spec_{fork}_mainnet") for fork in ALL_EXECUTABLE_SPEC_NAMES},
+    # MINIMAL: {fork: eval(f"spec_{fork}_minimal") for fork in ALL_EXECUTABLE_SPEC_NAMES},
+    # MAINNET: {fork: eval(f"spec_{fork}_mainnet") for fork in ALL_EXECUTABLE_SPEC_NAMES},
     GNOSIS: {fork: eval(f"spec_{fork}_gnosis") for fork in ALL_EXECUTABLE_SPEC_NAMES},
 }
