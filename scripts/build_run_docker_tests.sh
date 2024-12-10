@@ -11,7 +11,7 @@
 
 # Set variables
 ALL_EXECUTABLE_SPECS=("phase0" "altair" "bellatrix" "capella" "deneb" "electra" "whisk" "eip7594")
-TEST_PRESET_TYPE=minimal
+TEST_PRESET_TYPE=gnosis
 FORK_TO_TEST=phase0
 WORKDIR="//consensus-specs//tests//core//pyspec"
 ETH2SPEC_FOLDER_NAME="eth2spec"

@@ -48,8 +48,8 @@ def load_config_file(config_path: Union[Path, BinaryIO, TextIO]) -> Dict[str, An
     return parse_config_vars(config_data)
 
 
-mainnet_config_data: Dict[str, Any]
-minimal_config_data: Dict[str, Any]
+# mainnet_config_data: Dict[str, Any]
+# minimal_config_data: Dict[str, Any]
 gnosis_config_data: Dict[str, Any]
 loaded_defaults = False
 
@@ -57,8 +57,8 @@ loaded_defaults = False
 def load_defaults(spec_configs_path: Path) -> None:
     global mainnet_config_data, minimal_config_data, gnosis_config_data
 
-    mainnet_config_data = load_config_file(spec_configs_path / 'mainnet.yaml')
-    minimal_config_data = load_config_file(spec_configs_path / 'minimal.yaml')
+    # mainnet_config_data = load_config_file(spec_configs_path / 'mainnet.yaml')
+    # minimal_config_data = load_config_file(spec_configs_path / 'minimal.yaml')
     gnosis_config_data = load_config_file(spec_configs_path / 'gnosis.yaml')
     global loaded_defaults
     loaded_defaults = True

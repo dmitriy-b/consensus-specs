@@ -58,7 +58,7 @@ if __name__ == "__main__":
     for transition_test_module in all_tests:
         for pre_fork, post_fork in ALL_PRE_POST_FORKS:
             gen_runner.run_generator("transition", [
-                create_provider(transition_test_module, MINIMAL, pre_fork, post_fork),
-                create_provider(transition_test_module, MAINNET, pre_fork, post_fork),
+                # create_provider(transition_test_module, MINIMAL, pre_fork, post_fork),
+                # create_provider(transition_test_module, MAINNET, pre_fork, post_fork),
                 create_provider(transition_test_module, GNOSIS, pre_fork, post_fork),
             ])

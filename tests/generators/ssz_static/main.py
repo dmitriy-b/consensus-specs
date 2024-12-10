@@ -74,13 +74,13 @@ if __name__ == "__main__":
     # [(seed, config name, randomization mode, chaos on/off, cases_if_random)]
     settings = []
     seed = 1
-    for mode in random_value.RandomizationMode:
-        settings.append((seed, MINIMAL, mode, False, 30))
-        seed += 1
-    settings.append((seed, MINIMAL, random_value.RandomizationMode.mode_random, True, 30))
-    seed += 1
-    settings.append((seed, MAINNET, random_value.RandomizationMode.mode_random, False, 5))
-    seed += 1
+    # for mode in random_value.RandomizationMode:
+    #     settings.append((seed, MINIMAL, mode, False, 30))
+    #     seed += 1
+    # settings.append((seed, MINIMAL, random_value.RandomizationMode.mode_random, True, 30))
+    # seed += 1
+    # settings.append((seed, MAINNET, random_value.RandomizationMode.mode_random, False, 5))
+    # seed += 1
     settings.append((seed, GNOSIS, random_value.RandomizationMode.mode_random, False, 30))
     seed += 1
     for fork in TESTGEN_FORKS:
