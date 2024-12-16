@@ -30,7 +30,7 @@ MARKDOWN_FILES = $(wildcard $(SPEC_DIR)/*/*.md) \
                  $(wildcard $(SPEC_DIR)/_features/*/*/*.md) \
                  $(wildcard $(SSZ_DIR)/*.md)
 
-ALL_EXECUTABLE_SPEC_NAMES = phase0 altair bellatrix capella deneb electra whisk eip6800 eip7594 eip7732
+ALL_EXECUTABLE_SPEC_NAMES = phase0 altair bellatrix capella deneb electra
 # The parameters for commands. Use `foreach` to avoid listing specs again.
 COVERAGE_SCOPE := $(foreach S,$(ALL_EXECUTABLE_SPEC_NAMES), --cov=eth2spec.$S.$(TEST_PRESET_TYPE))
 PYLINT_SCOPE := $(foreach S,$(ALL_EXECUTABLE_SPEC_NAMES), ./eth2spec/$S)
@@ -179,7 +179,7 @@ define run_generator
 	. venv/bin/activate; \
 	pip3 install ../../../dist/eth2spec-*.whl; \
 	pip3 install 'eth2spec[generator]'; \
-	python3 main.py -o $(CURRENT_DIR)/$(TEST_VECTOR_DIR) $(if $(filter true,$(modcheck)),--modcheck) -l gnosis; \
+	python3 main.py -o $(CURRENT_DIR)/$(TEST_VECTOR_DIR) $(if $(filter true,$(modcheck)),--modcheck); \
 	echo "generator $(1) finished"
 endef
 
@@ -195,9 +195,9 @@ gen_kzg_setups:
 	if ! test -d venv; then python3 -m venv venv; fi; \
 	. venv/bin/activate; \
 	pip3 install -r requirements.txt; \
-	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/minimal/trusted_setups; \
+	# python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/minimal/trusted_setups; \
 	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/gnosis/trusted_setups; \
-	python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/mainnet/trusted_setups
+	# python3 ./gen_kzg_trusted_setups.py --secret=1337 --g1-length=4096 --g2-length=65 --output-dir ${CURRENT_DIR}/presets/mainnet/trusted_setups
 
 # For any generator, build it using the run_generator function.
 # (creation of output dir is a dependency)
