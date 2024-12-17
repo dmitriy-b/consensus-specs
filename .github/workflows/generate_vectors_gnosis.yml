@@ -1,0 +1,79 @@
+name: Run test vector generation on Gnosis
+
+# defaults:
+#   run:
+#     shell: zsh {0}
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The branch, tag or SHA to checkout and build from
+        default: gnosis
+        type: string
+        required: true
+  # schedule:
+  #   - cron:  '0 2 * * *'
+
+jobs:
+  generate-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'dmitriy-b/consensus-specs'
+          path: 'consensus-specs'
+          ref: ${{ inputs.ref || 'gnosis' }}
+      - name: Checkout consensus-spec-tests repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'dmitriy-b/consensus-spec-tests'
+          path: 'consensus-spec-tests'
+          branch: 'gnosis'
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.4'
+          cache: ''
+      - name: Clean up Spec Repository
+        run: |
+          cd consensus-specs
+          make clean
+      - name: Install dependencies and generate pyspec
+        run: |
+          cd consensus-specs
+          make install_test
+          make -B pyspec
+      - name: Generate tests
+        run: |
+          cd consensus-specs
+          make -j 4 generate_tests 2>&1 | tee ../consensustestgen.log
+          cp -r presets/ ../consensus-spec-tests/presets
+          cp -r configs/ ../consensus-spec-tests/configs
+          find . -type d -empty -delete
+      # - name: Check for errors
+      #   run: |
+      #     if grep -q "\[ERROR\]" consensustestgen.log; then
+      #       echo "There is an error in the log"
+      #       exit 1
+      #     fi
+      #     if find . -type f -name "INCOMPLETE" | grep -q "INCOMPLETE"; then
+      #       echo "There is an INCOMPLETE file"
+      #       exit 1
+      #     fi
+      - name: Archive configurations
+        run: |
+          cd consensus-spec-tests
+          tar -czvf gnosis.tar.gz tests/gnosis
+      - name: Upload gnosis.tar.gz
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gnosis Test Configuration
+          path: consensus-spec-tests/gnosis.tar.gz
+      - name: Upload consensustestgen
+        uses: actions/upload-artifact@v4
+        with:
+          name: consensustestgen.log
+          path: consensustestgen.log
