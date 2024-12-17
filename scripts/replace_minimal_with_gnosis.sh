@@ -6,6 +6,7 @@ rename_directories() {
         -not -path "./venv/*" \
         -not -path "./docs/*" \
         -not -path "./.history/*" \
+        -not -path "./scripts/*" \
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
@@ -30,6 +31,7 @@ replace_in_files() {
         -not -path "./venv/*" \
         -not -path "./docs/*" \
         -not -path "./.history/*" \
+        -not -path "./scripts/*" \
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
