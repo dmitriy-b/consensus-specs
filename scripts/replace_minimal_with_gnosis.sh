@@ -10,6 +10,7 @@ rename_directories() {
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
+        -not -path "./tests/core/pyspec/eth2spec/utils/test_merkle_minimal.py" \
         -not -path "./venv" \
         -not -path "./docs" \
         -not -path "./.history" \
@@ -35,6 +36,7 @@ replace_in_files() {
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
+        -not -path "./tests/core/pyspec/eth2spec/utils/test_merkle_minimal.py" \
         -not -name "*.pyc" \
         -not -name "*.pyo" \
         -not -name "*.so" \
