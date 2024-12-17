@@ -65,7 +65,7 @@ jobs:
 
   pyspec-tests:
     runs-on: ubuntu-latest
-    needs: [table_of_contents, prepare_gnosis]
+    needs: [table_of_contents]
     strategy:
       fail-fast: false
       matrix:
@@ -80,6 +80,24 @@ jobs:
         with:
           python-version: '3.12.4'
           cache: ''
+      - name: Make scripts executable
+        run: |
+          chmod +x scripts/replace_minimal_with_gnosis.sh
+          chmod +x scripts/replace_makefile.sh
+          chmod +x scripts/copy_gnosis_presets.sh
+          chmod +x scripts/copy_gnosis_configs.sh
+
+      - name: Replace minimal with gnosis
+        run: ./scripts/replace_minimal_with_gnosis.sh
+
+      - name: Replace Makefile
+        run: ./scripts/replace_makefile.sh
+
+      - name: Copy gnosis presets
+        run: ./scripts/copy_gnosis_presets.sh
+
+      - name: Copy gnosis configs
+        run: ./scripts/copy_gnosis_configs.sh
       - name: set TEST_PRESET_TYPE
         if: github.event.inputs.test_preset_type != ''
         run: |
@@ -96,11 +114,9 @@ jobs:
         if: github.event.schedule=='0 0 * * *'
         run: |
           echo "spec_test_preset_type=gnosis" >> $GITHUB_ENV
-      - name: Install pyspec requirements
-        run: make install_test
       - name: test-${{ matrix.version }}
         continue-on-error: true
-        run: make citest fork=${{ matrix.version }} TEST_PRESET_TYPE=${{env.spec_test_preset_type}}
+        run: make test fork=${{ matrix.version }} preset=${{ env.spec_test_preset_type }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -117,7 +133,11 @@ jobs:
         with:
           python-version: '3.12.4'
           cache: ''
-      - name: Install pyspec requirements
-        run: make install_test
       - name: Run generators with --modcheck
-        run: make generate_tests modcheck=true
+        run: make gen_all modcheck=true 2>&1 | tee consensustestgen.log
+      - name: Check for errors
+        run: |
+          if grep -q "\[ERROR\]" consensustestgen.log; then
+            echo "There is an error in the log"
+            exit 1
+          fi
