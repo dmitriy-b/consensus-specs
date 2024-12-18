@@ -23,32 +23,6 @@ on:
   #   - cron: '0 5 * * *'
 
 jobs:
-  prepare_gnosis:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Make scripts executable
-        run: |
-          chmod +x scripts/replace_minimal_with_gnosis.sh
-          chmod +x scripts/replace_makefile.sh
-          chmod +x scripts/copy_gnosis_presets.sh
-          chmod +x scripts/copy_gnosis_configs.sh
-
-      - name: Replace minimal with gnosis
-        run: ./scripts/replace_minimal_with_gnosis.sh
-
-      - name: Replace Makefile
-        run: ./scripts/replace_makefile.sh
-
-      - name: Copy gnosis presets
-        run: ./scripts/copy_gnosis_presets.sh
-
-      - name: Copy gnosis configs
-        run: ./scripts/copy_gnosis_configs.sh
-
   table_of_contents:
     runs-on: ubuntu-latest
     steps:

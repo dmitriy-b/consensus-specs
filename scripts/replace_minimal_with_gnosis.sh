@@ -10,7 +10,6 @@ rename_directories() {
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
-        -not -path "./tests/core/pyspec/eth2spec/utils/test_merkle_minimal.py" \
         -not -path "./venv" \
         -not -path "./docs" \
         -not -path "./.history" \
@@ -36,7 +35,6 @@ replace_in_files() {
         -not -path "./.github/workflows/*" \
         -not -path "./.pytest_cache/*" \
         -not -path "./.circleci/*" \
-        -not -path "./tests/core/pyspec/eth2spec/utils/test_merkle_minimal.py" \
         -not -name "*.pyc" \
         -not -name "*.pyo" \
         -not -name "*.so" \
@@ -49,8 +47,12 @@ replace_in_files() {
             if file "$file" | grep -q "text"; then
                 # Create a temporary file
                 temp_file=$(mktemp)
+                # Replace minimal with gnosis
                 sed 's/minimal/gnosis/g' "$file" > "$temp_file"
-                mv "$temp_file" "$file"
+                # Fix merkle_gnosis back to merkle_minimal
+                sed 's/merkle_gnosis/merkle_minimal/g' "$temp_file" > "$temp_file.2"
+                mv "$temp_file.2" "$file"
+                rm -f "$temp_file"
                 echo "Processed file: $file"
             fi
         fi
