@@ -114,7 +114,7 @@ test: BLS := --bls-type=$(if $(bls),$(bls),fastest)
 test: $(ETH2SPEC) pyspec
 	@mkdir -p $(TEST_REPORT_DIR)
 	@$(PYTHON_VENV) -m pytest \
-		-n 8 \
+		-n 12 \
 		$(MAYBE_TEST) \
 		$(MAYBE_FORK) \
 		$(PRESET) \
@@ -136,7 +136,7 @@ _test_with_coverage: MAYBE_TEST := $(if $(k),-k=$(k))
 _test_with_coverage: MAYBE_FORK := $(if $(fork),--fork=$(fork))
 _test_with_coverage: $(ETH2SPEC) pyspec
 	@$(PYTHON_VENV) -m pytest \
-		-n 8 \
+		-n 12 \
 		$(MAYBE_TEST) \
 		$(MAYBE_FORK) \
 		--disable-bls \
