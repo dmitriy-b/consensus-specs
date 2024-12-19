@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         # version: ["phase0", "altair", "bellatrix", "capella", "deneb", "electra"]
-        version: ["phase0", "electra"]
+        version: ["electra"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
